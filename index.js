@@ -1,36 +1,37 @@
-"use strict";
+var express = require("express");
+var app = express();
 
-const express = require("express");
-const path = require("path");
-const app = express();
+app.use(express.static("public"));
+app.use(express.urlencoded());
 
-app.use(express.static("files"));
-app.use(express.urlencoded({ extended: true }));
+app.post("/form", (req, res) => {
+  let html =
+    "<html><head><title>Registro</title></head><body><h1>Hola " +
+    req.body.nombre +
+    ",</h1><br/><h2>Fuiste registrado con los siguientes datos: </h2>" +
+    "<ul><li><b>Nombre completo: </b>" +
+    req.body.nombre +
+    " " +
+    req.body.apellido +
+    "</li>" +
+    "<li><b>Edad: </b>" +
+    req.body.edad +
+    "</li>" +
+    "<li><b>Tel. Celular: </b>" +
+    req.body.celular +
+    "</li>" +
+    "<li><b>Pais de origen: </b>" +
+    req.body.origen +
+    "</li>" +
+    "<li><b>Pais de residencia: </b>" +
+    req.body.residencia +
+    "</li></ul>" +
+    "<p><a href=/index.html>Registrarse nuevamente</a><p>" +
+    "</body><html></html>";
+  res.send(html);
+});
 
-app
-  .route("/")
-  .get(function (req, res) {
-    res.sendFile(path.join(__dirname + "/form.html"));
-  })
-
-  .post(function (req, res) {
-    let html =
-      "<html><head><meta charset='UTF-8'><meta name='viewport';  content='width=device-width, initial-scale=1.0'><title>Usuario</title></head><body><div class='ui container'><h3>Nombre:</h3>" +
-      req.body.name +
-      "<p><h3>Apellido:</h3>" +
-      req.body.lastName +
-      "<h3>Edad:</h3>" +
-      req.body.age +
-      "<h3>Celular:</h3>" +
-      req.body.mobileNumber +
-      "<h3>Nacionalidad:</h3>" +
-      req.body.contryOrigin +
-      "<h3>País de residencia:</h3>" +
-      req.body.countryResidence +
-      "<br><br><a class='ui button' href='/'>volver</a></p></div></body><html>";
-    res.send(html);
-  });
-
-app.listen(3000, () => {
-  console.log("servidor 3000 corriendo...");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`app escuchando en el puerto ${PORT}`);
 });

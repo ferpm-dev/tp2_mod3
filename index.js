@@ -2,36 +2,35 @@ var express = require("express");
 var app = express();
 
 app.use(express.static("public"));
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 app.post("/form", (req, res) => {
   let html =
     "<html><head><title>Registro</title></head><body><h1>Hola " +
-    req.body.nombre +
-    ",</h1><br/><h2>Fuiste registrado con los siguientes datos: </h2>" +
-    "<ul><li><b>Nombre completo: </b>" +
-    req.body.nombre +
+    req.body.name +
+    ", </h1><br/><h2>Los datos ingresados son: </h2>" +
+    "<ul><li><b>Nombre: </b>" +
+    req.body.name +
     " " +
-    req.body.apellido +
+    req.body.lastName +
     "</li>" +
     "<li><b>Edad: </b>" +
-    req.body.edad +
+    req.body.age +
     "</li>" +
     "<li><b>Tel. Celular: </b>" +
-    req.body.celular +
+    req.body.cel +
     "</li>" +
-    "<li><b>Pais de origen: </b>" +
-    req.body.origen +
+    "<li><b>Pais: </b>" +
+    req.body.country +
     "</li>" +
     "<li><b>Pais de residencia: </b>" +
-    req.body.residencia +
+    req.body.residence +
     "</li></ul>" +
-    "<p><a href=/index.html>Registrarse nuevamente</a><p>" +
+    "<p><a href=/index.html>Volver</a><p>" +
     "</body><html></html>";
   res.send(html);
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`app escuchando en el puerto ${PORT}`);
+app.listen(3000, () => {
+  console.log("corriendo en el puerto 3000");
 });

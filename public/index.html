@@ -1,39 +1,28 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Formulario con Node.js y Express</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>tpU2M3</title>
   </head>
   <body>
-    <form method="POST" action="/form">
-      <div>
-        <label for="name">Nombre</label>
-        <input type="text" name="name" require />
-      </div>
-      <div>
-        <label for="lastName">Apellido</label>
-        <input type="text" name="lastName" require />
-      </div>
-      <div>
-        <label for="age">Edad</label>
-        <input type="text" name="age" require />
-      </div>
-      <div>
-        <label for="cel">Celular</label>
-        <input type="text" name="cel" require />
-      </div>
-      <div>
-        <label for="country">País</label>
-        <input type="text" name="country" require />
-      </div>
-      <div>
-        <label for="residence">País de residencia</label>
-        <input type="text" name="residence" require placeholder=" " />
-      </div>
-      <div>
-        <button type="submit">Enviar</button>
-      </div>
-    </form>
+    <h1>form</h1>
+    <div>
+      <form method="POST" action="/form01">
+        <input type="text" name="name" placeholder="nombre"></input>
+        <input type="text" name="lastName" placeholder="apellido"></input>
+        <input type="number" name="age" placeholder="edad"></input>
+        <input type="number" name="mobile" placeholder="celular"></input>
+        <input type="text" name="nationality" placeholder="nacionalidad"></input>
+        <input
+          type="text"
+          name="residence"
+          placeholder="país de residencia"
+        ></imput>
+        <button type="submit">ENVIAR</button>
+      </form>  
+    </div>
   </body>
 </html>
